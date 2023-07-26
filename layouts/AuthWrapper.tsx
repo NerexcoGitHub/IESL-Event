@@ -64,7 +64,7 @@ export default function AuthWrapper({ children }: { children: ReactNode }) {
         <NavBar>
           <Title>
             <Typography onClick={() => router.push("/")} variant="h6">
-              Algorhythm
+            IESL-WA
             </Typography>
           </Title>
           <Button
