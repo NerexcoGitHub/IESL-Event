@@ -3,7 +3,7 @@ import { signIn } from "next-auth/react";
 import { FormEventHandler, useState } from "react";
 import Router from "next/router";
 import Image from "next/image";
-import logo from "../public/algo.png";
+import logo from "../public/iesl.png";
 
 const jump = keyframes`
   from{
