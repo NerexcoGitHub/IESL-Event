@@ -1,7 +1,7 @@
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { Alert, Grid } from "@mui/material";
-import Button from "@mui/material/Button";
+// import Button from "@mui/material/Button";
 import Chip from "@mui/material/Chip";
 import IconButton from "@mui/material/IconButton";
 import Paper from "@mui/material/Paper";
@@ -33,6 +33,15 @@ const SearchBarWrapper = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+
+const Button=styled.button` 
+  background-color: #219ebc;
+  border: none;
+  border-radius: 5px;
+
+  color: white;
+  padding: 10px 20px;
+`
 
 const ButtonWrapper = styled.div`
   display: flex;
@@ -349,14 +358,15 @@ export default function BasicTable({
             >
               <TableHead>
                 <TableRow>
-                  <TableCell>Name</TableCell>
-                  <TableCell align="right">Email</TableCell>
-                  <TableCell align="right">Phone</TableCell>
+                  <TableCell>Ticket No</TableCell>
+                  <TableCell align="right">Ticket Sold By</TableCell>
+                  <TableCell align="right">Name/Ticket Holder</TableCell>
                   <TableCell align="right">Ticket Type</TableCell>
-                  <TableCell align="right">Payment Status</TableCell>
+                  <TableCell align="right">Table No</TableCell>
+                  {/* <TableCell align="right">Payment Status</TableCell>
                   <TableCell align="right">Attendance</TableCell>
                   <TableCell align="center">Settings</TableCell>
-                  <TableCell align="right">Email</TableCell>
+                  <TableCell align="right">Email</TableCell> */}
                 </TableRow>
               </TableHead>
               <TableBody>
