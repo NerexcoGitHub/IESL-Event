@@ -275,7 +275,6 @@ export default function BasicTable({
       table_no: row?.table_no,
       ticket_no: row?.ticket_no,
       ticket_sold_by: row?.ticket_sold_by,
-
     });
     setOpen(true);
     setOperation("edit");
@@ -309,9 +308,6 @@ export default function BasicTable({
             <Button color="info" onClick={handleClickOpenUpload}>
               <CloudUploadIcon />
             </Button>
-            <Button color="secondary" onClick={onClickAdd}>
-              Add
-            </Button>
            
           </ButtonWrapper>
         </SearchBarWrapper>
@@ -332,9 +328,7 @@ export default function BasicTable({
                   <TableCell>Ticket No</TableCell>
                   <TableCell align="right">Ticket Sold By</TableCell>
                   <TableCell align="right">Name/Ticket Holder</TableCell>
-                  <TableCell align="right">Ticket Type</TableCell>
                   <TableCell align="right">Table No</TableCell>
-                 
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -349,28 +343,11 @@ export default function BasicTable({
                     key={row.name}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
-                    <TableCell component="th" scope="row">
-                      {row.name}
-                    </TableCell>
-                    <TableCell align="right">{row.ticket_no}</TableCell>
+                    
+                    <TableCell align="left">{row.ticket_no}</TableCell>
                     <TableCell align="right">{row?.ticket_sold_by}</TableCell>
                     <TableCell align="right">{row.name}</TableCell>
                     <TableCell align="right">{row.table_no}</TableCell>
-
-                   
-                    <TableCell align="center">
-                      <Stack direction="row" spacing={1}>
-                        <IconButton aria-label="edit">
-                          <EditIcon onClick={() => Edit(row)} />
-                        </IconButton>
-                        <IconButton aria-label="delete" color="primary">
-                          <DeleteIcon
-                            onClick={() => deleteParticipant(row._id)}
-                          />
-                        </IconButton>
-                      </Stack>
-                    </TableCell>
-                    
                   </TableRow>
                 ))}
               </TableBody>
