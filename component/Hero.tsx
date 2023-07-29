@@ -1,12 +1,11 @@
 import Link from "next/link";
 
 const Hero = () => {
-
   return (
     <>
       <section
         id="home"
-        className="relative z-10 overflow-hidden pt-[120px] pb-16 md:pt-[150px] md:pb-[120px] xl:pt-[180px] xl:pb-[160px] 2xl:pt-[210px] 2xl:pb-[200px]"
+        className="relative h-screen  z-10 overflow-hidden pt-[120px] pb-16 md:pt-[120px] md:pb-[120px] xl:pt-[140px] xl:pb-[150px] 2xl:pt-[130px] 2xl:pb-[180px]"
       >
         <div className="container">
           <div className="-mx-4 flex flex-wrap">
@@ -16,7 +15,7 @@ const Hero = () => {
                 data-wow-delay=".2s"
               >
                 <h1 className="mb-5 text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight">
-                Free and Open-Source Next.js Template for Startup & SaaS
+                  Free and Open-Source Next.js Template for Startup & SaaS
                 </h1>
                 {/* <p className="mb-12 text-base font-medium !leading-relaxed text-body-color dark:text-white dark:opacity-90 sm:text-lg md:text-xl">
                 Startup is free Next.js template for startups and SaaS business websites comes with all the essential pages, components, and sections you need to launch a complete business website, built-with Next 13.x and Tailwind CSS.
@@ -35,7 +34,41 @@ const Hero = () => {
                     Star on GitHub
                   </Link>
                 </div> */}
+                <form>
                 
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                      <svg
+                        className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                        />
+                      </svg>
+                    </div>
+                    <input
+                      type="search"
+                      id="default-search"
+                      className="block w-full p-4 pl-10 text-[18px] md:text-[22px] text-white border  rounded-lg bg-blue-700 focus:ring-blue-500 focus:border-blue-500 dark:bg-dark dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      placeholder="Search Mockups, Logos..."
+                      required
+                    />
+                    {/* <button
+                      type="submit"
+                      className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    >
+                      Search
+                    </button> */}
+                  </div>
+                </form>
               </div>
             </div>
           </div>
