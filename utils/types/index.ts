@@ -3,13 +3,11 @@ export type PaymentStatus = "FULL_PAID" | "HALF_PAID" | "NOT_PAID"
 export type AttendanceStatus = "NOT_ATTENDED" | "ATTENDED"
 export interface TicketReqBody {
   _id: string;
+  ticket_no: string;
+  ticket_sold_by: string;
   name: string;
-  email: string;
-  phone_number: string;
-  type: TicketType;
-  payment_status: PaymentStatus;
-  status: AttendanceStatus;
-  email_sent: boolean;
+  table_no: string;
+
 }
 
 export type ResponseBody = {

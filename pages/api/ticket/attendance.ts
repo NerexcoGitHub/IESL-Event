@@ -11,7 +11,7 @@ export default async function handler(
 ) {
   const session = await unstable_getServerSession(req, res, authOptions);
 
-  if (session) {
+  // if (session) {
     if (req.method === "GET") {
       // handle get all tickets
       try {
@@ -28,9 +28,9 @@ export default async function handler(
       // not implemented
       res.status(404).json({ message: "Not found" });
     }
-  } else {
-    res.status(400).json({
-      message: "Unauthorized",
-    });
-  }
+  // } else {
+  //   res.status(400).json({
+  //     message: "Unauthorized",
+  //   });
+  // }
 }

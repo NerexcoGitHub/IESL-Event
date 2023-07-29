@@ -19,63 +19,22 @@ export default async function handler(
 ) {
   const session = await unstable_getServerSession(req, res, authOptions);
 
-  if (session) {
+  // if (session) {
     if (req.method === "POST") {
       // handle ticket add
       try {
         const { Ticket, QR } = await connect();
-        const { email, name, phone_number, type, payment_status } =
+        const { ticket_no, ticket_sold_by, name, table_no } =
           req.body as TicketReqBody;
 
         const ticket = await Ticket.create({
-          email,
+          ticket_no,
+          ticket_sold_by,
           name,
-          phone_number,
-          type,
-          payment_status,
+          table_no,
         });
 
-        const id = ticket.id;
-
-        const _buf: any[] = [];
-        const writableStream = new Stream.Writable({
-          write: function (chunk, encoding, next) {
-            _buf.push(chunk);
-            next();
-          },
-        });
-
-        QRCode.toFileStream(writableStream, id, {
-          width: 640,
-          errorCorrectionLevel: "H",
-        });
-
-        writableStream.on("finish", async function () {
-          const storageRef = ref(storage, `image/${id}.png`);
-
-          const snapshot = await uploadBytes(
-            storageRef,
-            Buffer.concat(_buf),
-            metadata
-          );
-
-          const url = await getDownloadURL(snapshot.ref);
-
-          console.log("****", url);
-
-          await QR.create({
-            contentType: "image/png",
-            data: Buffer.concat(_buf),
-            ticket_id: id,
-            image_url: url,
-          });
-
-          res.status(200).json({ message: "Success", data: ticket });
-        });
-
-        writableStream.on("error", function (err) {
-          res.status(400).json({ message: "Error", data: err });
-        });
+        res.status(200).json({ message: "Success", data: ticket });
       } catch (error: any) {
         res.status(400).json({ message: "Error", data: error });
       }
@@ -93,9 +52,9 @@ export default async function handler(
       // not implemented
       res.status(404).json({ message: "Not found" });
     }
-  } else {
-    res.status(400).json({
-      message: "Unauthorized",
-    });
-  }
+  // } else {
+  //   res.status(400).json({
+  //     message: "Unauthorized",
+  //   });
+  // }
 }

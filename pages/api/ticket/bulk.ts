@@ -1,28 +1,28 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import { unstable_getServerSession } from "next-auth";
-import { Stream } from "stream";
+
 import { connect, Ticket } from "../../../utils/db";
 import { ResponseBody, TicketReqBody } from "../../../utils/types";
 import { authOptions } from "../auth/[...nextauth]";
-import QRCode from "qrcode";
+
 import { Model } from "mongoose";
-import { QRImage } from "../../../utils/db/models/qr.model";
-import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
-import { storage } from "../../../utils/firebaseConfig";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseBody>
 ) {
-  const session = await unstable_getServerSession(req, res, authOptions);
 
-  if (session) {
+  console.log("Request", req.body);
+  const session = await unstable_getServerSession(req, res, authOptions);
+    console.log("Session", session);
+
+  // if (session) {
     if (req.method === "POST") {
-      const { Ticket, QR } = await connect();
+      const { Ticket } = await connect();
       const reqData = req.body as TicketReqBody[];
       const reqDataPromiseArr = reqData.map((item) =>
-        promiseHandler(item, Ticket, QR)
+        promiseHandler(item, Ticket)
       );
       const resolvedData = await Promise.allSettled(reqDataPromiseArr);
       const isAllFulfilled = resolvedData.every(
@@ -37,69 +37,33 @@ export default async function handler(
     } else {
       res.status(404).json({ message: "Not Handled" });
     }
-  } else {
-    res.status(400).json({
-      message: "Unauthorized",
-    });
-  }
+  // } else {
+  //   console.log("Not authorized");
+  //   res.status(400).json({
+  //     message: "Unauthorized",
+  //   });
+  // }
 }
 
 const promiseHandler = async (
-  item: TicketReqBody,
-  Ticket: Model<Ticket, {}, {}, {}, any>,
-  QR: Model<QRImage, {}, {}, {}, any>
+  item: any,
+  Ticket: Model<any, {}, {}, {}, any>
 ) => {
-  return new Promise<Ticket>(async (resolve, reject) => {
+  return new Promise<any>(async (resolve, reject) => {
     try {
-      const { email, name, phone_number, type, payment_status } = item;
+      const { ticket_no, ticket_sold_by, name, table_no } = item;
       const ticket = await Ticket.create({
-        email,
+        ticket_no,
+        ticket_sold_by,
         name,
-        phone_number,
-        type,
-        payment_status,
+        table_no,
       });
 
-      const id = ticket.id;
 
-      const _buf: any[] = [];
-      const writableStream = new Stream.Writable({
-        write: function (chunk, encoding, next) {
-          _buf.push(chunk);
-          next();
-        },
-      });
 
-      QRCode.toFileStream(writableStream, id, {
-        width: 640,
-        errorCorrectionLevel: "H",
-      });
-
-      writableStream.on("finish", async function () {
-        const storageRef = ref(storage, `image/${id}.png`);
-
-        const snapshot = await uploadBytes(storageRef, Buffer.concat(_buf), {
-          contentType: "image/png",
-        });
-
-        const url = await getDownloadURL(snapshot.ref);
-
-        console.log("****", url);
-
-        await QR.create({
-          contentType: "image/png",
-          data: Buffer.concat(_buf),
-          ticket_id: id,
-          image_url: url,
-        });
-
-        resolve(ticket);
-      });
-
-      writableStream.on("error", function (err) {
-        reject({ error: err, item });
-      });
+      resolve(ticket);
     } catch (error) {
+      console.log("Error", error);
       reject({ error, item });
     }
   });

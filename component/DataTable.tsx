@@ -34,14 +34,14 @@ const SearchBarWrapper = styled.div`
   justify-content: space-between;
 `;
 
-const Button=styled.button` 
+const Button = styled.button`
   background-color: #219ebc;
   border: none;
   border-radius: 5px;
 
   color: white;
   padding: 10px 20px;
-`
+`;
 
 const ButtonWrapper = styled.div`
   display: flex;
@@ -71,12 +71,12 @@ export default function BasicTable({
   setOpen,
   setOperation,
   onClickAdd,
-}: TableProps) {
+}: any) {
   const router = useRouter();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  const [data, setData] = useState<TicketReqBody[]>([]);
-  const [rows, setRows] = useState<TicketReqBody[]>(data);
+  const [data, setData] = useState<any[]>([]);
+  const [rows, setRows] = useState<any[]>(data);
   const [searched, setSearched] = useState<string>("");
   const [count, setCount] = useState<number>(0);
   const [alert, setAlert] = React.useState<AL>({
@@ -272,13 +272,10 @@ export default function BasicTable({
   const Edit = (row: TicketReqBody) => {
     setInitialValues({
       name: row?.name,
-      email: row?.email,
-      phone_number: row?.phone_number,
-      type: row?.type,
-      payment_status: row?.payment_status,
-      _id: row?._id,
-      status: row?.status,
-      email_sent: row?.email_sent,
+      table_no: row?.table_no,
+      ticket_no: row?.ticket_no,
+      ticket_sold_by: row?.ticket_sold_by,
+
     });
     setOpen(true);
     setOperation("edit");
@@ -309,39 +306,13 @@ export default function BasicTable({
 
         <SearchBarWrapper>
           <ButtonWrapper>
-            <Button
-              size="small"
-              variant="contained"
-              color="info"
-              onClick={handleClickOpenUpload}
-            >
+            <Button color="info" onClick={handleClickOpenUpload}>
               <CloudUploadIcon />
             </Button>
-            <Button
-              size="small"
-              variant="contained"
-              color="secondary"
-              onClick={onClickAdd}
-            >
+            <Button color="secondary" onClick={onClickAdd}>
               Add
             </Button>
-            <Button
-              size="small"
-              variant="contained"
-              color="primary"
-              onClick={() => router.push("/qr")}
-            >
-              QR
-            </Button>
-            <Button
-              size="small"
-              variant="contained"
-              color="warning"
-              disabled={true}
-              onClick={() => sendEmailAll()}
-            >
-              Send All
-            </Button>
+           
           </ButtonWrapper>
         </SearchBarWrapper>
         <TableWrapper>
@@ -363,10 +334,7 @@ export default function BasicTable({
                   <TableCell align="right">Name/Ticket Holder</TableCell>
                   <TableCell align="right">Ticket Type</TableCell>
                   <TableCell align="right">Table No</TableCell>
-                  {/* <TableCell align="right">Payment Status</TableCell>
-                  <TableCell align="right">Attendance</TableCell>
-                  <TableCell align="center">Settings</TableCell>
-                  <TableCell align="right">Email</TableCell> */}
+                 
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -384,48 +352,12 @@ export default function BasicTable({
                     <TableCell component="th" scope="row">
                       {row.name}
                     </TableCell>
-                    <TableCell align="right">{row.email}</TableCell>
-                    <TableCell align="right">{row?.phone_number}</TableCell>
-                    <TableCell align="right">{row.type}</TableCell>
+                    <TableCell align="right">{row.ticket_no}</TableCell>
+                    <TableCell align="right">{row?.ticket_sold_by}</TableCell>
+                    <TableCell align="right">{row.name}</TableCell>
+                    <TableCell align="right">{row.table_no}</TableCell>
 
-                    <TableCell align="right">
-                      {row.payment_status === "FULL_PAID" ? (
-                        <Chip
-                          label="FULL-PAID"
-                          color="success"
-                          variant="outlined"
-                        />
-                      ) : row.payment_status === "HALF_PAID" ? (
-                        <Chip
-                          label="HALF-PAID"
-                          color="warning"
-                          variant="outlined"
-                        />
-                      ) : (
-                        ""
-                      )}
-                    </TableCell>
-                    <TableCell align="right">
-                      {row.status === "ATTENDED" ? (
-                        <Chip
-                          label="ATTENDED"
-                          color="success"
-                          variant="outlined"
-                          onClick={() =>
-                            markAttendance(row._id, "NOT_ATTENDED")
-                          }
-                        />
-                      ) : row.status === "NOT_ATTENDED" ? (
-                        <Chip
-                          label="NOT-ATTENDED"
-                          color="warning"
-                          variant="outlined"
-                          onClick={() => markAttendance(row._id, "ATTENDED")}
-                        />
-                      ) : (
-                        ""
-                      )}
-                    </TableCell>
+                   
                     <TableCell align="center">
                       <Stack direction="row" spacing={1}>
                         <IconButton aria-label="edit">
@@ -438,16 +370,7 @@ export default function BasicTable({
                         </IconButton>
                       </Stack>
                     </TableCell>
-                    <TableCell align="right">
-                      <Button
-                        variant="contained"
-                        size="small"
-                        disabled={row?.email_sent && true}
-                        onClick={() => sendEmail(row._id)}
-                      >
-                        {row?.email_sent ? "Sent" : "Send"}
-                      </Button>
-                    </TableCell>
+                    
                   </TableRow>
                 ))}
               </TableBody>

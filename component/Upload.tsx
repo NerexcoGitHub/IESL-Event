@@ -38,7 +38,7 @@ function Upload({ onError, onSuccess }: UploadProps) {
   const [failedData, setFailedData] = useState<{
     reason: {
       error: any;
-      item: TicketReqBody;
+      item: any;
     };
     status: "rejected" | "fulfilled";
   }>();
@@ -100,7 +100,7 @@ function Upload({ onError, onSuccess }: UploadProps) {
         {/* <Title variant="h6">Create tickets</Title> */}
         <Text variant="subtitle1">Upload CSV file</Text>
         <Text variant="subtitle2">
-          name,email,phone_number,type,payment_status
+        ticket_no,ticket_sold_by,name,table_no
         </Text>
         {failedData && (
           <>

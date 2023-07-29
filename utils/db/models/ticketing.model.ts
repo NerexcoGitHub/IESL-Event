@@ -4,14 +4,10 @@ import { AttendanceStatus, PaymentStatus, TicketType } from "../../types";
 
 type Ticket = {
   _id: string;
+  ticket_no: string;
+  ticket_sold_by: string;
   name: string;
-  email: string;
-  phone_number: string;
-  type: TicketType;
-  // statuses
-  email_sent: boolean;
-  status: AttendanceStatus;
-  payment_status: PaymentStatus;
+  table_no: string;
 };
 
 type TicketMongoDoc = Ticket & Document;
@@ -21,35 +17,19 @@ const TicketSchema = new Schema<TicketMongoDoc>({
     type: String,
     required: true,
   },
-  email: {
+  ticket_no: {
     type: String,
     required: true,
     unique: true,
   },
-  phone_number: {
+  ticket_sold_by: {
     type: String,
     required: false,
   },
-  type: {
-    type: String,
-    enum: ["UNDERGRADUATE", "ALUMNI", "VIP"],
-    required: true,
-  },
-  email_sent: {
-    type: Boolean,
-    default: false,
-  },
-  status: {
+
+  table_no: {
     type: String,
     required: false,
-    enum: ["ATTENDED", "NOT_ATTENDED"],
-    default: "NOT_ATTENDED",
-  },
-  payment_status: {
-    type: String,
-    required: false,
-    enum: ["FULL_PAID", "HALF_PAID", "NOT_PAID"],
-    default: "NOT_PAID",
   },
 });
 
