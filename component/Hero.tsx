@@ -70,15 +70,14 @@ const Hero = () => {
                     </button> */}
                   </div>
                 </form>
-                <div className="overflow-scroll absolute h-full no-scrollbar flex-col justify-center">
-                <TicketCard />
-                <TicketCard />
-                <TicketCard /> <TicketCard />
-                <TicketCard />
+                <div className="overflow-scroll w-full no-scrollbar flex-col justify-center h-72">
+                  <TicketCard />
+                  <TicketCard />
+                  <TicketCard />
+                  <TicketCard />
+                  <TicketCard />
+                </div>
               </div>
-              </div>
-
-             
             </div>
           </div>
         </div>
