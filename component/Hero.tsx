@@ -1,11 +1,12 @@
 import Link from "next/link";
+import TicketCard from "./Card";
 
 const Hero = () => {
   return (
     <>
       <section
         id="home"
-        className="relative h-screen  z-10 overflow-hidden pt-[120px] pb-16 md:pt-[120px] md:pb-[120px] xl:pt-[140px] xl:pb-[150px] 2xl:pt-[130px] 2xl:pb-[180px]"
+        className="relative h-screen  z-10 overflow-hidden  pt-[120px] pb-16 md:pt-[120px] md:pb-[120px] xl:pt-[140px] xl:pb-[150px] 2xl:pt-[130px] 2xl:pb-[180px]"
       >
         <div className="container">
           <div className="-mx-4 flex flex-wrap">
@@ -15,12 +16,12 @@ const Hero = () => {
                 data-wow-delay=".2s"
               >
                 <h1 className="mb-5 text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight">
-                  Free and Open-Source Next.js Template for Startup & SaaS
+                  {`ENGINEERS’ NIGHT 2023`}
                 </h1>
-                {/* <p className="mb-12 text-base font-medium !leading-relaxed text-body-color dark:text-white dark:opacity-90 sm:text-lg md:text-xl">
-                Startup is free Next.js template for startups and SaaS business websites comes with all the essential pages, components, and sections you need to launch a complete business website, built-with Next 13.x and Tailwind CSS.
+                <p className="mb-12 text-base font-medium !leading-relaxed text-body-color dark:text-white dark:opacity-90 sm:text-lg md:text-xl">
+                  9 Anniversary of IESL WA Chapter and Dinner Dance
                 </p>
-                <div className="flex flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
+                {/* <div className="flex flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
                   <Link
                     href="https://nextjstemplates.com/templates/startup"
                     className="rounded-md bg-primary py-4 px-8 text-base font-semibold text-white duration-300 ease-in-out hover:bg-primary/80"
@@ -33,9 +34,8 @@ const Hero = () => {
                   >
                     Star on GitHub
                   </Link>
-                </div> */}
+                </div>  */}
                 <form>
-                
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                       <svg
@@ -58,9 +58,10 @@ const Hero = () => {
                       type="search"
                       id="default-search"
                       className="block w-full p-4 pl-10 text-[18px] md:text-[22px] text-white border  rounded-lg bg-blue-700 focus:ring-blue-500 focus:border-blue-500 dark:bg-dark dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      placeholder="Search Mockups, Logos..."
+                      placeholder="Name / Ticket Number "
                       required
                     />
+
                     {/* <button
                       type="submit"
                       className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -69,7 +70,15 @@ const Hero = () => {
                     </button> */}
                   </div>
                 </form>
+                <div className="overflow-scroll absolute h-full no-scrollbar flex-col justify-center">
+                <TicketCard />
+                <TicketCard />
+                <TicketCard /> <TicketCard />
+                <TicketCard />
               </div>
+              </div>
+
+             
             </div>
           </div>
         </div>

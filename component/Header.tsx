@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import logo from "../public/iesl.png";
 
 //import ThemeToggler from "./ThemeToggler";
 
@@ -46,7 +47,7 @@ const Header = () => {
       >
         <div className="container">
           <div className="relative -mx-4 flex items-center justify-between">
-            <div className="w-60 max-w-full px-4 xl:mr-12">
+            <div className="w-18 sm:w-22 max-w-full px-4 xl:mr-12">
               <Link
                 href="/"
                 className={`header-logo block w-full ${
@@ -54,16 +55,9 @@ const Header = () => {
                 } `}
               >
                 <Image
-                  src="/images/logo/logo-2.svg"
+                  src={logo}
                   alt="logo"
-                  width={140}
-                  height={30}
-                  className="w-full dark:hidden"
-                />
-                <Image
-                  src="/images/logo/logo.svg"
-                  alt="logo"
-                  width={140}
+                  width={90}
                   height={30}
                   className="hidden w-full dark:block"
                 />
@@ -149,7 +143,7 @@ const Header = () => {
                   </ul> */}
                 </nav>
               </div>
-              <div className="flex items-center justify-end pr-16 lg:pr-0">
+              {/* <div className="flex items-center justify-end pr-16 lg:pr-0">
                 <Link
                   href="/signin"
                   className="hidden py-3 px-7 text-base font-bold text-dark hover:opacity-70 dark:text-white md:block"
@@ -163,9 +157,8 @@ const Header = () => {
                   Sign Up
                 </Link>
                 <div>
-                  {/* <ThemeToggler /> */}
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
