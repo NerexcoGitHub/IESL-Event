@@ -11,8 +11,6 @@
         width: 0;
         height: 0;
     }
-
-
     /* Hide scrollbar for IE, Edge and Firefox */
     .no-scrollbar {
         -ms-overflow-style: none;  /* IE and Edge */
