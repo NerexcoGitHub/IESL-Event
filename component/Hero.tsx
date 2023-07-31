@@ -57,7 +57,7 @@ const Hero = () => {
                     <input
                       type="search"
                       id="default-search"
-                      className="block w-full p-4 pl-10 text-[18px] md:text-[22px] text-white border  rounded-lg bg-blue-700 focus:ring-blue-500 focus:border-blue-500 dark:bg-dark dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="block w-full p-4 pl-10 text-[18px] md:text-[22px] text-black border  rounded-lg bg-blue-700 focus:ring-blue-500 focus:border-blue-500 dark:bg-dark dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder="Name / Ticket Number "
                       required
                     />

@@ -21,6 +21,7 @@ module.exports = {
       primary: "#4A6CF7",
       yellow: "#FBB040",
       "body-color": "#959CB1",
+      "body-color-box": "rgb(241 245 249)",
     },
     screens: {
       xs: "450px",
