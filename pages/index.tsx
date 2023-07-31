@@ -6,7 +6,7 @@ export default function Home() {
   const { status } = useSession();
 
   useEffect(() => {
-    if (status === "unauthenticated") Router.replace("/client-home");
+    if (status === "unauthenticated") Router.replace("/home-page");
     if (status === "authenticated") Router.replace("/home");
   }, [status]);
 

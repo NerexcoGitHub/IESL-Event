@@ -1,7 +1,72 @@
 import Link from "next/link";
 import TicketCard from "./Card";
+import { use, useEffect, useState } from "react";
+
+interface Ticket {
+  id: number;
+  name: string;
+  table_no: number;
+  ticket_no: number;
+  ticket_sold_by: string;
+
+}
 
 const Hero = () => {
+  const [data, setData] = useState([]);
+  const [rows, setRows] = useState([]);
+  const [searched, setSearched] = useState<string>("");
+
+  // load data from api
+
+  const requestSearch = (searchedVal: string, searchProperties: (keyof Ticket)[]) => {
+    setSearched(searchedVal);
+    const text = searchedVal.toLowerCase();
+  
+    if (text) {
+      const filteredRows = data.filter((item) => {
+        for (const property of searchProperties) {
+          const str = String(item[property]).toLowerCase();
+          if (str.includes(text)) {
+            return true;
+          }
+        }
+        return false;
+      });
+  
+      setRows(filteredRows);
+    } else {
+      setRows(data);
+    }
+  };
+
+ 
+
+  const loadData = async () => {
+    const results = await fetch("/api/ticket", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (results.status === 200) {
+      const { data } = await results.json();
+
+      console.log("---------", data);
+
+      if (data) {
+        setData(data);
+        setRows(data);
+      }
+    } else {
+      console.log("error");
+    }
+  };
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
   return (
     <>
       <section
@@ -58,8 +123,12 @@ const Hero = () => {
                       type="search"
                       id="default-search"
                       className="block w-full p-4 pl-10 text-[18px] md:text-[22px] text-black border  rounded-lg bg-blue-700 focus:ring-blue-500 focus:border-blue-500 dark:bg-dark dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      placeholder="Name / Ticket Number "
+                      placeholder="Name / Ticket Number / Sold By"
                       required
+                      value={searched}
+                      onChange={(searchVal) =>
+                        requestSearch(searchVal.target.value,['name','ticket_no','ticket_sold_by'])
+                      }
                     />
 
                     {/* <button
@@ -71,11 +140,14 @@ const Hero = () => {
                   </div>
                 </form>
                 <div className="overflow-scroll w-full no-scrollbar flex-col justify-center h-72">
+                  {rows.map((item) => (
+                    <TicketCard item={item} />
+                  ))}
+                  {/* <TicketCard />
                   <TicketCard />
                   <TicketCard />
                   <TicketCard />
-                  <TicketCard />
-                  <TicketCard />
+                  <TicketCard /> */}
                 </div>
               </div>
             </div>
