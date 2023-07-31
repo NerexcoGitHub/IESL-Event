@@ -29,7 +29,7 @@ const TicketCard: React.FC = () => {
     // </div>
 
     <div
-      className="w-full mt-2 relative overflow-hidden rounded-m bg-body-color-box  shadow-xl dark:bg-dark"
+      className="w-full mt-2 relative overflow-hidden rounded-m bg-body-color-box shadow-xl dark:bg-dark"
       data-wow-delay=".1s"
     >
       <div className="p-2 sm:p-2 md:py-2 md:px-2 lg:p-2 xl:py-2 xl:px-2 2xl:p-2">
