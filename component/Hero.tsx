@@ -8,7 +8,6 @@ interface Ticket {
   table_no: number;
   ticket_no: number;
   ticket_sold_by: string;
-
 }
 
 const Hero = () => {
@@ -18,10 +17,13 @@ const Hero = () => {
 
   // load data from api
 
-  const requestSearch = (searchedVal: string, searchProperties: (keyof Ticket)[]) => {
+  const requestSearch = (
+    searchedVal: string,
+    searchProperties: (keyof Ticket)[]
+  ) => {
     setSearched(searchedVal);
     const text = searchedVal.toLowerCase();
-  
+
     if (text) {
       const filteredRows = data.filter((item) => {
         for (const property of searchProperties) {
@@ -32,14 +34,12 @@ const Hero = () => {
         }
         return false;
       });
-  
+
       setRows(filteredRows);
     } else {
       setRows(data);
     }
   };
-
- 
 
   const loadData = async () => {
     const results = await fetch("/api/ticket", {
@@ -81,7 +81,7 @@ const Hero = () => {
                 data-wow-delay=".2s"
               >
                 <h1 className="mb-5 text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight">
-                  {`ENGINEERS’ NIGHT 2023`}
+                  {`IESL ENGINEERS’ NIGHT 2023`}
                 </h1>
                 <p className="mb-4 sm:mb-10 text-base font-medium !leading-relaxed text-body-color dark:text-white dark:opacity-90 sm:text-lg md:text-xl">
                   9 Anniversary of IESL WA Chapter and Dinner Dance
@@ -127,7 +127,11 @@ const Hero = () => {
                       required
                       value={searched}
                       onChange={(searchVal) =>
-                        requestSearch(searchVal.target.value,['name','ticket_no','ticket_sold_by'])
+                        requestSearch(searchVal.target.value, [
+                          "name",
+                          "ticket_no",
+                          "ticket_sold_by",
+                        ])
                       }
                     />
 

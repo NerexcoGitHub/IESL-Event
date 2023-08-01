@@ -109,6 +109,7 @@ export default function LoginPage() {
 
     if (res?.status === 200) {
       Router.replace("/");
+      localStorage.setItem("token", "true");
     } else {
       setError({
         errorStatus: true,

@@ -6,7 +6,7 @@ import { Providers } from "./providers";
 const ClientHomePage: NextPage = (): JSX.Element => {
   return (
     <>
-      <div className="dark:bg-black">
+      <div className="dark:bg-homeBackground">
         <Providers>
           <Header />
           <Hero />
