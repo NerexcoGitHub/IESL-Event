@@ -40,21 +40,21 @@ export default async function handler(
       // mark ticket as attended
     } else if (req.method === "PATCH") {
       try {
-        const { email, name, phone_number, type, payment_status } =
-          req.body as TicketReqBody;
+        // const { email, name, phone_number, type, payment_status } =
+        //   req.body as TicketReqBody;
 
-        const updated = {
-          email,
-          name,
-          phone_number,
-          type,
-          payment_status,
-        };
+        // const updated = {
+        //   email,
+        //   name,
+        //   phone_number,
+        //   type,
+        //   payment_status,
+        // };
 
-        const updatedTicket = await Ticket.findByIdAndUpdate(id, updated, {
-          new: true,
-        });
-        res.status(200).json({ message: "Success", data: updatedTicket });
+        // const updatedTicket = await Ticket.findByIdAndUpdate(id, updated, {
+        //   new: true,
+        // });
+        // res.status(200).json({ message: "Success", data: updatedTicket });
       } catch (error) {
         res.status(400).json({ message: "Error", data: error });
       }

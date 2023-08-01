@@ -181,7 +181,7 @@ const QRPage: NextPage = () => {
             <CloseIcon />
           </IconButton>
         </DialogTitle>
-        <DialogContent>
+        {/* <DialogContent>
           {ticketData && (
             <>
               <InfoWrapper>
@@ -245,7 +245,7 @@ const QRPage: NextPage = () => {
               </ButtonWrapper>
             </>
           )}
-        </DialogContent>
+        </DialogContent> */}
       </Dialog>
       {alert.show && (
         <Grid item md={12} style={{ margin: 10 }}>

@@ -30,32 +30,32 @@ export default async function handler(
           ticket_id: item._id,
         });
 
-        if (qr) {
-          versions = [
-            ...versions,
-            {
-              subject: "Algorhythms 2023",
-              to: [{ email: item.email, name: item.name }],
-              params: {
-                bodyMessage: "Test Bulk",
-                email: item.email,
-                name: item.name,
-                phone_number: item.phone_number,
-                qr_url: `${VERCEL_URL || NEXT_PUBLIC_CALLBACK_URL}/api/qr/${
-                  item._id
-                }`,
-                qr_data: Buffer.from(qr.data).toString("base64"),
-              },
-            },
-          ];
+        // if (qr) {
+        //   versions = [
+        //     ...versions,
+        //     {
+        //       subject: "Algorhythms 2023",
+        //       to: [{ email: item.email, name: item.name }],
+        //       params: {
+        //         bodyMessage: "Test Bulk",
+        //         email: item.email,
+        //         name: item.name,
+        //         phone_number: item.phone_number,
+        //         qr_url: `${VERCEL_URL || NEXT_PUBLIC_CALLBACK_URL}/api/qr/${
+        //           item._id
+        //         }`,
+        //         qr_data: Buffer.from(qr.data).toString("base64"),
+        //       },
+        //     },
+        //   ];
 
-          const updateTicket = {
-            ...item.toObject(),
-            email_sent: true,
-          };
+        //   const updateTicket = {
+        //     ...item.toObject(),
+        //     email_sent: true,
+        //   };
 
-          await Ticket.updateOne({ _id: item.id }, updateTicket);
-        }
+        //   await Ticket.updateOne({ _id: item.id }, updateTicket);
+        // }
       }
 
       const sibConfig: sendEmailParams = {
