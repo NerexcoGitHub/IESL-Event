@@ -2,12 +2,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { connect } from "../../../utils/db";
 import { ResponseBody, TicketReqBody } from "../../../utils/types";
-import { unstable_getServerSession } from "next-auth/next";
+import { getServerSession } from "next-auth/next"
 import { authOptions } from "../auth/[...nextauth]";
-import QRCode from "qrcode";
-import { Stream } from "stream";
-import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
-import { storage } from "../../../utils/firebaseConfig";
+
 
 const metadata = {
   contentType: "image/png",
@@ -17,7 +14,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseBody>
 ) {
-  const session = await unstable_getServerSession(req, res, authOptions);
+  const session = await getServerSession(req, res, authOptions);
 
   // if (session) {
     if (req.method === "POST") {

@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import { unstable_getServerSession } from "next-auth";
+import { getServerSession } from "next-auth/next"
 
 import { connect, Ticket } from "../../../utils/db";
 import { ResponseBody, TicketReqBody } from "../../../utils/types";
@@ -14,7 +14,7 @@ export default async function handler(
 ) {
 
   console.log("Request", req.body);
-  const session = await unstable_getServerSession(req, res, authOptions);
+  const session = await getServerSession(req, res, authOptions);
     console.log("Session", session);
 
   // if (session) {
