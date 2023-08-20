@@ -82,7 +82,7 @@ export default function BasicTable({
 }: any) {
   const router = useRouter();
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
   const [data, setData] = useState<any[]>([]);
   const [rows, setRows] = useState<any[]>(data);
   const [searched, setSearched] = useState<string>("");

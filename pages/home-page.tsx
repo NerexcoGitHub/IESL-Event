@@ -2,6 +2,7 @@ import { NextPage } from "next";
 import Hero from "../component/Hero";
 import Header from "../component/Header";
 import  Providers  from "./providers";
+import TableAllocation from "../component/TableAllocation";
 
 const ClientHomePage: NextPage = (): JSX.Element => {
   return (
@@ -10,6 +11,8 @@ const ClientHomePage: NextPage = (): JSX.Element => {
         <Providers>
           <Header />
           <Hero />
+          <TableAllocation />
+          
         </Providers>
       </div>
     </>
