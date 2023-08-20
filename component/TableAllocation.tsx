@@ -15,7 +15,10 @@ function TableAllocation() {
       <div>
         <h1>Table Allocation</h1>
       </div>
-      <div>
+      <div style={{
+        marginTop: "2rem",
+        padding: "3rem",
+      }}>
         <Image width={500} height={800} src={TableImg} alt="Table Allocation" />
       </div>
     </div>
