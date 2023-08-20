@@ -1,4 +1,21 @@
-ticket_no	ticket_sold_by	name	table_no
-1	Nuwan	Hemal	12
-2	Binu	Nandani	14
-3	Mihan	Shakuna	8
+"ticket_no		",ticket_sold_by,name,table_no
+1,Parakrama,Pradeep Fernando,41
+2,Parakrama,Sithara Fernando,41
+3,Parakrama,Nuwan Mathota,41
+4,Parakrama,Milani Mathota,41
+5,Parakrama,Chaminda Wanasinghe,41
+6,Parakrama,Nirosha Abesekara,41
+7,Parakrama,Parakrama S,41
+8,Parakrama,Thanuja S,41
+9,Parakrama,Rohan Mendis,41
+10,Parakrama,Thanuja Mendis,41
+11,Parakrama,Nishantha Madurapperuma,39
+12,Parakrama,Saumya Jayabahu,39
+13,Parakrama,Yasas Wasala,42
+14,Parakrama,Sachie Anupama,42
+15,Parakrama,Jayamini,
+16,Parakrama,Dinaya Mendis,40
+17,Parakrama,Ajith Mathota,39
+18,Parakrama,Kumudinie Mathota,39
+19,Parakrama,Hasithe Ekanayaka,42
+20,Parakrama,Thehara,40

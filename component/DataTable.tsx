@@ -65,6 +65,14 @@ type TableProps = {
   onClickAdd: () => void;
 };
 
+interface Ticket {
+  id: number;
+  name: string;
+  table_no: number;
+  ticket_no: number;
+  ticket_sold_by: string;
+}
+
 export default function BasicTable({
   callbackEnd,
   setInitialValues,
@@ -91,16 +99,24 @@ export default function BasicTable({
     setOpenUpload(true);
   };
 
-  const requestSearch = (searchedVal: string) => {
+  const requestSearch = (
+    searchedVal: string,
+    searchProperties: (keyof Ticket)[]
+  ) => {
+    setSearched(searchedVal);
     const text = searchedVal.toLowerCase();
-    if (text) {
-      // eslint-disable-next-line
-      const filteredRows = rows.filter((item) => {
-        const str = JSON.stringify(item).toLowerCase();
 
-        if (str.search(text) >= 0) return item;
+    if (text) {
+      const filteredRows = data.filter((item) => {
+        for (const property of searchProperties) {
+          const str = String(item[property]).toLowerCase();
+          if (str.includes(text)) {
+            return true;
+          }
+        }
+        return false;
       });
-      setPage(0);
+
       setRows(filteredRows);
     } else {
       setRows(data);
@@ -109,7 +125,7 @@ export default function BasicTable({
 
   const cancelSearch = () => {
     setSearched("");
-    requestSearch(searched);
+    // requestSearch(searched);
   };
 
   const handleChangePage = (
@@ -308,14 +324,26 @@ export default function BasicTable({
             <Button color="info" onClick={handleClickOpenUpload}>
               <CloudUploadIcon />
             </Button>
-           
           </ButtonWrapper>
         </SearchBarWrapper>
         <TableWrapper>
-          <SearchBar
+          <input
+            type="search"
+            id="default-search"
+            className="block w-full p-4 pl-10 text-[18px] md:text-[22px] text-black border  rounded-lg bg-blue-700 focus:ring-blue-500 focus:border-blue-500 dark:bg-dark dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Name / Ticket Number / Sold By"
+            required
+            style={{
+              marginBottom: 20,
+            }}
             value={searched}
-            onChange={(searchVal) => requestSearch(searchVal)}
-            onCancelSearch={() => cancelSearch()}
+            onChange={(searchVal) =>
+              requestSearch(searchVal.target.value, [
+                "name",
+                "ticket_no",
+                "ticket_sold_by",
+              ])
+            }
           />
           <TableContainer component={Paper}>
             <Table
@@ -343,7 +371,6 @@ export default function BasicTable({
                     key={row.name}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
-                    
                     <TableCell align="left">{row.ticket_no}</TableCell>
                     <TableCell align="right">{row?.ticket_sold_by}</TableCell>
                     <TableCell align="right">{row.name}</TableCell>
