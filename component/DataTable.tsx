@@ -371,10 +371,10 @@ export default function BasicTable({
                     key={row.name}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
-                    <TableCell align="left">{row.ticket_no}</TableCell>
+                    <TableCell align="left">{row?.ticket_no}</TableCell>
                     <TableCell align="right">{row?.ticket_sold_by}</TableCell>
-                    <TableCell align="right">{row.name}</TableCell>
-                    <TableCell align="right">{row.table_no}</TableCell>
+                    <TableCell align="right">{row?.name}</TableCell>
+                    <TableCell align="right">{row?.table_no}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
