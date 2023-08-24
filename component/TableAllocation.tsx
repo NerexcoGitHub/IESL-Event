@@ -1,5 +1,5 @@
 import React from "react";
-import TableImg from "../table-allocation.jpg";
+import TableImg from "../table-allocation.png";
 import Image from "next/image";
 
 function TableAllocation() {
